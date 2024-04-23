@@ -1,7 +1,3 @@
-section .data
-    my_text db "Hello world!",10,0
-    debug_text db "debug",10,0
-
 section .text
     global ft_strlen
 
