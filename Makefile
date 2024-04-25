@@ -1,13 +1,16 @@
-NAME = my_program
+NAME = libasm.a
 
-SRC = ft_strlen.s
+SRC = ft_strlen.s ft_strcmp.s
 
 OBJ = $(SRC:.s=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	gcc $(OBJ) -o $(NAME) -lc
+	ar rcs -o $(NAME)
+
+compile: re
+	gcc -c main.c -o main.o && gcc main.o ft_strcmp.o ft_strlen.o -o a.out
 
 clean:
 	rm -rf $(OBJ)
