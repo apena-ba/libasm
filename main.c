@@ -1,9 +1,12 @@
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
 size_t  ft_strlen(const char *s);
 int     ft_strcmp(const char *s1, const char *s2);
 char    *ft_strcpy(char *dest, const char *src);
+ssize_t ft_write(int fd, const void *buf, size_t count);
+ssize_t ft_read(int fd, void *buf, size_t count);
 
 void test_strcpy(void){
     char s1[2] = "1";
@@ -25,4 +28,10 @@ int main(){
     printf("My one:\t\t%d\n", ft_strcmp(s1, s2));
     printf("\nstrcpy\n\n");
     test_strcpy();
+    printf("\nwrite\n\n");
+    printf("Original:\t%ld\n", write(1, s1, 3));
+    printf("My one:\t\t%ld\n", ft_write(1, s1, 3));
+    printf("\read\n\n");
+    printf("My one:\t\t%ld\n", ft_read(3, s1, 3));
+    printf("Original:\t%ld\n", read(3, s1, 3));
 }

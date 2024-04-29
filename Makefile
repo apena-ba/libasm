@@ -1,6 +1,6 @@
 NAME = libasm.a
 
-SRC = ft_strlen.s ft_strcmp.s ft_strcpy.s
+SRC = ft_strlen.s ft_strcmp.s ft_strcpy.s ft_write.s ft_read.s
 
 OBJ = $(SRC:.s=.o)
 
@@ -17,6 +17,9 @@ clean:
 
 fclean: clean
 	rm -rf $(NAME)
+
+sclean: fclean
+	rm -rf main.o a.out
 
 re: fclean all
 
