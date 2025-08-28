@@ -1,23 +1,17 @@
 section .text
-	global ft_strcpy
+    global ft_strcpy
 
 ft_strcpy:
-	mov rax, rdi ; dest
-    mov rbx, rsi ; src
-	push rax
-	mov dl, [rbx]
-    mov [rax], dl
-    mov cl, [rax]
+    ; rdi = dest
+    ; rsi = src
+    mov rax, rdi        ; save dest for return
 
 ft_strcpyLoop:
-    inc rax
-    inc rbx
-    mov dl, [rbx]
-    mov [rax], dl
-    mov cl, [rax]
-
-    cmp cl, 0
+    mov dl, [rsi]       ; load byte from src
+    mov [rdi], dl       ; store in dest
+    inc rsi
+    inc rdi
+    test dl, dl         ; check for null terminator
     jne ft_strcpyLoop
-ft_strcpyEnd:
-	pop rax
-	ret
+
+    ret

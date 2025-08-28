@@ -11,6 +11,7 @@ ft_strcmp:
 
     cmp cl, dl
     jne ft_strcmpEnd
+
 ft_strcmpLoop:
     inc rax
     inc rbx
@@ -21,6 +22,7 @@ ft_strcmpLoop:
     jne ft_strcmpEnd
     cmp cl, 0
     jne ft_strcmpLoop
+
 ft_strcmpEnd:
     mov rax, 0
     sub cl, dl
