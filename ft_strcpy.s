@@ -2,16 +2,13 @@ section .text
     global ft_strcpy
 
 ft_strcpy:
-    ; rdi = dest
-    ; rsi = src
-    mov rax, rdi        ; save dest for return
+    mov rax, rdi            ; Keep dest to return
+    mov rcx, -1             ; Initialize counter to -1
 
-ft_strcpyLoop:
-    mov dl, [rsi]       ; load byte from src
-    mov [rdi], dl       ; store in dest
-    inc rsi
-    inc rdi
-    test dl, dl         ; check for null terminator
-    jne ft_strcpyLoop
-
+_loop:
+    inc rcx
+    mov dl, [rsi + rcx]     ; Use the register dl to store the value
+    mov [rdi + rcx], dl
+    cmp dl, 0               ; If the char is not \0, keep looping
+    jne _loop
     ret

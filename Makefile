@@ -7,7 +7,7 @@ OBJ = $(SRC:.s=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rcs -o $(NAME)
+	ar rcs -o $(NAME) $(OBJ)
 
 compile: re
 	gcc -c main.c -o main.o && gcc main.o $(OBJ) -o a.out

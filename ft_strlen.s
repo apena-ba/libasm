@@ -2,19 +2,10 @@ section .text
     global ft_strlen
 
 ft_strlen:
-    mov rax, rdi
-    mov rdx, 0
-    mov cl, [rax]
-    cmp cl, 0
-    je ft_strlenEnd
+    mov rax, -1             ; Initialize counter to -1
 
-ft_strlenLoop:
+_loop:
     inc rax
-    inc rdx
-    mov cl, [rax]
-    cmp cl, 0
-    jne ft_strlenLoop
-
-ft_strlenEnd:
-    mov rax, rdx
+    cmp byte[rdi + rax], 0  ; Compare 8-bits size starting from rdi + rax (string pointer + counter)
+    jne _loop
     ret

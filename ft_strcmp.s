@@ -2,37 +2,24 @@ section .text
     global ft_strcmp
 
 ft_strcmp:
-    mov rax, rdi
-    mov rbx, rsi
-    mov rcx, 0
+    mov rcx, -1             ; Initialize counter to -1
+    mov rax, 0              ; Clean rax & rdx
+    mov rdx, 0
 
-    mov cl, [rax]
-    mov dl, [rbx]
+_loop:
+    inc rcx
+    mov al, byte[rdi + rcx] ; Save *s1 into al
+    mov dl, byte[rsi + rcx] ; Save *s2 into dl
+    
+    cmp al, 0               ; If we find \0 in s1, exit
+    je _exit
+    
+    cmp dl, 0               ; If we find \0 in s2, exit
+    je _exit
+    
+    cmp al, dl              ; If the chars are the same, keep looping
+    je _loop
 
-    cmp cl, dl
-    jne ft_strcmpEnd
-
-ft_strcmpLoop:
-    inc rax
-    inc rbx
-    mov cl, [rax]
-    mov dl, [rbx]
-
-    cmp cl, dl
-    jne ft_strcmpEnd
-    cmp cl, 0
-    jne ft_strcmpLoop
-
-ft_strcmpEnd:
-    mov rax, 0
-    sub cl, dl
-    js negative_result
-    mov al, cl
-    ret
-
-negative_result:
-    XOR cl, 255
-    add cl, 1
-    mov al, cl
-    neg rax
+_exit:
+    sub rax, rdx            ; Difference of chars stored in rax
     ret
