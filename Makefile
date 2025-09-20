@@ -9,17 +9,11 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	ar rcs -o $(NAME) $(OBJ)
 
-compile: re
-	gcc -c main.c -o main.o && gcc main.o $(OBJ) -o a.out
-
 clean:
 	rm -rf $(OBJ)
 
 fclean: clean
 	rm -rf $(NAME)
-
-sclean: fclean
-	rm -rf main.o a.out
 
 re: fclean all
 
